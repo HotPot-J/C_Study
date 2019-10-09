@@ -1,11 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-/* 一.
+ /*一.
 1. 判断大小端问题：
 1.大端：低地址存储高数据  2.小端：第地址存储低数据
+*/
 
-
-int main(){
+/*int main(){
 	int ret = IsLittle();
 	if (ret == 0){
 		printf("小端存储\n");
@@ -14,9 +14,9 @@ int main(){
 		printf("大端存储\n");
 	}
 	return 0;
-}
-   大小端判断方法1：
-    int IsLittle(){
+}*/
+   //大小端判断方法1：
+/*    int IsLittle(){
 	int a = 0x11223344;//赋值为16进制数
 	char *pc = (char *)&a; //其含义为用char*类型的指针指向int类型的变量 需要把该变量地址强转为char*类型
 	if (*pc == 0x44){
@@ -24,10 +24,10 @@ int main(){
 	}
 	return 1;    //否则为大端
 						   
-}
+}*/
 
 
-  大小端判断方法2：
+//  大小端判断方法2：
 union Un      //union 联合体关键字  其中内容共用一块内存  即该代码中a ch公用一块内存
 {
 	int a;     //由于int为4个字节 即32位  ch 1个字节 8位  所以整个联合体为32位
@@ -36,14 +36,14 @@ union Un      //union 联合体关键字  其中内容共用一块内存  即该代码中a ch公用一块
 
 
     int IsLittle(){
-	union Un uu;
+		union Un uu;
 	uu.a = 0x11223344; 
 	if (uu.ch == 0x44){  //由于a ch共用同一块内存 如果 char== 0x44 ；即为小端 
 		return 0; 
 	}
 	return 1;
 }
-*/
+
 
 /*  二.
    1.char  signed char(有符号char)  unsigned char(无符号char) 在内存中的存储  
